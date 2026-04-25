@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: #C9A961;
+  color: #0B0B0C;
+  padding: 0.5rem 1rem;
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 9999;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── RGB triplet variables — Dark (default) ── */
+/* format: R G B  (space-separated, no commas — for Tailwind opacity syntax) */
+:root,
+[data-theme="dark"] {
+  --c-ink-black:    11 11 12;
+  --c-charcoal:     26 26 28;
+  --c-charcoal-soft:37 37 42;
+  --c-ivory:        245 241 232;
+  --c-ivory-muted:  201 195 181;
+  --c-beige-warm:   232 220 196;
+  --c-gold:         201 169 97;
+  --c-gold-bright:  229 192 123;
+  --c-gold-deep:    139 114 57;
+  --c-wa-green:     37 211 102;
+  --nav-blur-bg:    rgba(11,11,12,0.72);
+}
+
+/* ── RGB triplet variables — Light ── */
+[data-theme="light"] {
+  --c-ink-black:    250 247 241;
+  --c-charcoal:     239 233 222;
+  --c-charcoal-soft:228 220 208;
+  --c-ivory:        26 20 14;
+  --c-ivory-muted:  94 84 70;
+  --c-beige-warm:   215 202 183;
+  --c-gold:         139 106 42;
+  --c-gold-bright:  160 123 52;
+  --c-gold-deep:    107 80 32;
+  --c-wa-green:     37 211 102;
+  --nav-blur-bg:    rgba(250,247,241,0.82);
+}
+
+/* ── Theme transition ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: rgb(var(--c-ink-black));
+  color: rgb(var(--c-ivory));
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Paper grain texture (fixed, full-site) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ── Gold button hover gradient animation ── */
+@keyframes goldShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gold-btn-hover {
+  background: linear-gradient(135deg, #C9A961, #E5C07B, #C9A961) !important;
+  background-size: 200% 200% !important;
+  animation: goldShift 2s ease infinite;
+}
+
+/* ── Fluid type scale ── */
+.text-hero {
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.text-section-h2 {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.text-h3 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.text-caption {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid rgb(var(--c-gold));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Lightbox open — lock body ── */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* ── Lenis smooth scroll ── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* ── Masonry break ── */
+.masonry-item {
+  break-inside: avoid;
+}
+
+/* ── Signature SVG draw animation ── */
+@keyframes drawSignature {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+.signature-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawSignature 2s cubic-bezier(0.22,1,0.36,1) 1.6s forwards;
+}
+
+/* ── Nav link gold underline ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgb(var(--c-gold));
+  transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Section glow ── */
+.section-glow {
+  background: radial-gradient(circle at 20% 30%, rgba(201,169,97,0.08), transparent 50%);
+}
+
+/* ── Hero vignette ── */
+.hero-vignette {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(11,11,12,0.6) 100%);
+}

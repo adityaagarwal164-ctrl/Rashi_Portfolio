@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm \"/c/Users/DELL/Desktop/Rashi Website/src/App.css\")",
+      "Bash(rm \"/c/Users/DELL/Desktop/Rashi Website/src/assets/react.svg\")",
+      "Bash(mkdir -p \"/c/Users/DELL/Desktop/Rashi Website/src/components/layout\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/hero\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/about\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/featured\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/gallery\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/lightbox\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/why\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/process\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/contact\" \"/c/Users/DELL/Desktop/Rashi Website/src/components/ui\" \"/c/Users/DELL/Desktop/Rashi Website/src/hooks\" \"/c/Users/DELL/Desktop/Rashi Website/src/lib\" \"/c/Users/DELL/Desktop/Rashi Website/src/data\")"
+    ]
+  }
+}
