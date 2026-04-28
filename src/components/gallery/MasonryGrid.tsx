@@ -5,9 +5,11 @@ import { ArtworkCard } from './ArtworkCard';
 interface Props {
   artworks: Artwork[];
   onOpen: (artwork: Artwork) => void;
+  isAdmin?: boolean;
+  onDelete?: (id: string) => void;
 }
 
-export function MasonryGrid({ artworks, onOpen }: Props) {
+export function MasonryGrid({ artworks, onOpen, isAdmin, onDelete }: Props) {
   return (
     <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6">
       <AnimatePresence mode="popLayout">
@@ -20,7 +22,7 @@ export function MasonryGrid({ artworks, onOpen }: Props) {
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.5, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ArtworkCard artwork={a} onClick={onOpen} />
+            <ArtworkCard artwork={a} onClick={onOpen} isAdmin={isAdmin} onDelete={onDelete} />
           </motion.div>
         ))}
       </AnimatePresence>

@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
-import { artworks } from './data/artworks';
 import type { Artwork } from './data/artworks';
 import { ThemeProvider } from './context/ThemeContext';
+import { useAdmin } from './context/AdminContext';
 
 import { SmoothScroll }  from './components/layout/SmoothScroll';
 import { Navbar }        from './components/layout/Navbar';
@@ -16,6 +16,7 @@ import { Process }       from './components/process/Process';
 import { ContactCTA }    from './components/contact/ContactCTA';
 
 export default function App() {
+  const { allArtworks } = useAdmin();
   const [lightboxArtwork, setLightboxArtwork] = useState<Artwork | null>(null);
 
   const openLightbox = useCallback((artwork: Artwork) => {
@@ -28,15 +29,15 @@ export default function App() {
 
   const goPrev = useCallback(() => {
     if (!lightboxArtwork) return;
-    const idx = artworks.findIndex(a => a.id === lightboxArtwork.id);
-    setLightboxArtwork(artworks[(idx - 1 + artworks.length) % artworks.length]);
-  }, [lightboxArtwork]);
+    const idx = allArtworks.findIndex(a => a.id === lightboxArtwork.id);
+    setLightboxArtwork(allArtworks[(idx - 1 + allArtworks.length) % allArtworks.length]);
+  }, [lightboxArtwork, allArtworks]);
 
   const goNext = useCallback(() => {
     if (!lightboxArtwork) return;
-    const idx = artworks.findIndex(a => a.id === lightboxArtwork.id);
-    setLightboxArtwork(artworks[(idx + 1) % artworks.length]);
-  }, [lightboxArtwork]);
+    const idx = allArtworks.findIndex(a => a.id === lightboxArtwork.id);
+    setLightboxArtwork(allArtworks[(idx + 1) % allArtworks.length]);
+  }, [lightboxArtwork, allArtworks]);
 
   return (
     <ThemeProvider>
